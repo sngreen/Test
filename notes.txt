@@ -1,0 +1,100 @@
+
+Yesterday
+
+	Git hooks, according to the given regular expression
+	
+	Jira library
+	
+		find issue by name, keyword, committer, assignee, ... whatever 
+		create issue
+		re-asign the issue
+		update, change the state ... whatever is going to be used.
+		
+Today	
+	
+	Back to Git .. a bit trickier ..
+		
+		We do not want to use prepare-message and pre-commit hooks
+		What we do want to use is the pre-push 
+		
+		For a given branch ..
+		HEAD on the server
+		HEAD in the local sandbox
+		
+		for range of the commits ..
+		
+	Brings back the question of how to control the branches ..
+
+
+
+
+
+# master?
+git ls-remote https://github.com/sngreen/Test.git
+
+6393666a3bf84e31dbbed3bd7c7da818830a5198	HEAD
+
+
+
+4e4225a..3c5f5ab  18505 -> 18505
+git rev-list 4e4225a..3c5f5ab
+
+# current branch, last local commit
+
+
+
+
+git rev-parse HEAD
+
+
+git rev-parse origin/18505
+
+
+
+git rev-list --format=%B --max-count=1 68f4dbe | grep -v 68f4dbe
+
+
+
+
+
+git rev-list $(git rev-parse origin/18505)..$(git rev-parse HEAD)
+
+git rev-list $(git rev-parse origin/$(git branch))..$(git rev-parse HEAD)
+
+------------------------------------------------------------------------
+
+git var GIT_AUTHOR_IDENT
+git --exec-path
+
+git rev-list --format=%B --max-count=1 68f4dbe | grep -v 68f4dbe
+
+
+
+#!/bin/sh
+
+grep -E '\[[A-Z]{4}\]\s[A-Z]{9}\-[0-9]{4,5}\s\w+' $1
+if [ $? -eq 1 ]; then
+	echo 'Please give a meaningful commit message'
+	exit 1
+else
+	exit 0
+fi
+
+
+
+3b95d40830523cfd9b787a2d4c648d64d5a57d55
+18505
+[SEGR] AZPDEVOPS-5253 echo 3 > file.txt.
+
+ab2ab65aa35e1f1c7339d86fb7cc6d170de2be28
+18505
+[SEGR] AZPDEVOPS-5253 echo 2 > file.txt.
+
+90e7b1ba20bf74499acbdcafc209368fca9a8543
+18505
+[SEGR] AZPDEVOPS-5253 echo 1 > file.txt.
+
+
+
+
+
