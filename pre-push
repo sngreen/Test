@@ -25,8 +25,6 @@ do
 
 		for commit in $(git rev-list "$range")
 		do
-			
-			
 			author=$(git var GIT_AUTHOR_IDENT | awk '{NF-=2} $1=$1')
 			branch=$(git rev-parse --abbrev-ref HEAD | grep -E $branch_pattern)
 			if [ $? -ne 0 ]; then 
@@ -44,19 +42,13 @@ do
 				exit 1
 			fi
 			
-			#issue=$()
-			
-			# to avoid Windows/Linux directory separators
-			# p=$(pwd)
-			# cd $(git rev-parse --git-dir)
-			# python3 jira.py --branch ${branch} --commit ${commit} --message "$(git rev-list --format=%B --max-count=1 $commit | grep -v $commit)"
-				
-			#
-			# post to jira
-			echo "author  $author"
-			echo "branch  $branch"
-			echo "message $message"
-			
+			# this looks almost redundant, but .. 
+			p=$(pwd)
+			cd $(git rev-parse --git-dir)
+			issue=$( echo "$message" | cut -d' ' -f2)
+			python3 jira.py --option comment --issue $(echo "$message" | cut -d' ' -f2) --text "${message}"
+			cd ${p}
+		
 		done
 	fi
 done
