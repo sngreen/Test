@@ -4,6 +4,7 @@ remote="$1"
 url="$2"
 
 message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}\s\w+'
+message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}[ A-z-.]+'
 branch_pattern='[0-9]{4,5}'
 
 z40=0000000000000000000000000000000000000000
@@ -26,7 +27,7 @@ do
 		for commit in $(git rev-list "$range")
 		do
 			author=$(git var GIT_AUTHOR_IDENT | awk '{NF-=2} $1=$1')
-			branch=$(git rev-parse --abbrev-ref HEAD | grep -E $branch_pattern)
+			branch=$(git rev-parse --abbrev-ref HEAD | grep -P $branch_pattern)
 			if [ $? -ne 0 ]; then 
 				exit 0
 			fi
