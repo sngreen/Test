@@ -4,7 +4,7 @@ remote="$1"
 url="$2"
 
 message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}\s\w+'
-message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}[ A-z-.]+'
+message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}[ A-z-.,]+'
 branch_pattern='[0-9]{4,5}'
 
 z40=0000000000000000000000000000000000000000
@@ -31,7 +31,7 @@ do
 			if [ $? -ne 0 ]; then 
 				exit 0
 			fi
-			msg=$(git rev-list --format=%B --max-count=1 $commit | grep -v $commit | grep -E $message_pattern)
+			msg=$(git rev-list --format=%B --max-count=1 $commit | grep -v $commit | grep -E "$message_pattern")
 			if [ $? -ne 0 ]; then
 				
 				# to avoid Windows/Linux directory separators
