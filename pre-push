@@ -50,8 +50,9 @@ do
 			python3 jira.py --option comment --issue $(echo "$message" | cut -d' ' -f2) --text "${msg}"
 			cd ${p}
 			
+			echo
 			echo "${msg}"
-		
+			echo 
 		done
 	fi
 done
