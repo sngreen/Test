@@ -182,6 +182,7 @@ class JiraApi:
         i = json.loads(r.text)
         
         # show what was done
+        LOGGER.info('-'*77)
         for k, v in {'summary': summary,'description': description,'url': i['self'],'id': i['id'],'key': i['key']}.items():
             LOGGER.info(self.format.format(k, v))
        
@@ -195,7 +196,8 @@ class JiraApi:
             LOGGER.info('Comment was not added ..')
             sys.exit()
 
-        # show what was done     
+        # show what was done
+        LOGGER.info('-'*77) 
         for k, v in {'url': url, 'issue_key': kwds.get('issue_key'), 'comment': kwds.get('comment')}.items():
             LOGGER.info(self.format.format(k, v))
         
@@ -222,6 +224,7 @@ class JiraApi:
             sys.exit()
 
         # show what was done
+        LOGGER.info('-'*77)
         for k, v in {'issue_key': kwds.get('issue_key'), 'assignee': kwds.get('assignee')}.items():
             LOGGER.info(self.format.format(k,v ))
         
