@@ -31,7 +31,7 @@ do
 			if [ $? -ne 0 ]; then 
 				exit 0
 			fi
-			msg=$(git rev-list --format=%B --max-count=1 $commit | grep -v $commit | grep -E "$message_pattern")
+			msg=$(git rev-list --format=%B --max-count=1 $commit | grep -v $commit | grep -P "$message_pattern")
 			if [ $? -ne 0 ]; then
 				
 				# to avoid Windows/Linux directory separators
