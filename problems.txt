@@ -1,0 +1,8 @@
+Regular expression do not work the same in Git Bash as elsewhere. 
+Which environments will people be using Git under;
+	Eclipse, Windows, Git Bash, Cygwin, Subsystem, anything they want?
+	Where to put scripts, how paths are treated ..
+	git rev-parse --git-dir
+Merges
+	Common ancestors, reachable, determine whether it is a simple commit or if it is a merge.
+	
