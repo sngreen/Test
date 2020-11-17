@@ -95,6 +95,28 @@ ab2ab65aa35e1f1c7339d86fb7cc6d170de2be28
 [SEGR] AZPDEVOPS-5253 echo 1 > file.txt.
 
 
+------------------------------------------------------------------------
+
+scm@LX-EMWP06:~/Projects/repositories/Test$ git log --pretty=oneline | head -1
+c91ce2fcdf7d3d2aaa977f4f87870709c3b06183 [SEGR] SCMTEST-7 modified and copied out pre-push, once again. Last time I hope
+scm@LX-EMWP06:~/Projects/repositories/Test$ git rev-list --format=%B --max-count=1 c91ce2fcdf7d3d2aaa977f4f87870709c3b06183
+commit c91ce2fcdf7d3d2aaa977f4f87870709c3b06183
+[SEGR] SCMTEST-7 modified and copied out pre-push, once again.
+Last time I hope
+
+scm@LX-EMWP06:~/Projects/repositories/Test$ msg=$(git rev-list --format=%B --max-count=1 c91ce2fcdf7d3d2aaa977f4f87870709c3b06183)
+scm@LX-EMWP06:~/Projects/repositories/Test$ message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}[ A-z-.,\n]+'
+scm@LX-EMWP06:~/Projects/repositories/Test$ echo $msg
+commit c91ce2fcdf7d3d2aaa977f4f87870709c3b06183 [SEGR] SCMTEST-7 modified and copied out pre-push, once again. Last time I hope
+scm@LX-EMWP06:~/Projects/repositories/Test$ echo $msg | grep $message_pattern
+grep: Invalid regular expression
+scm@LX-EMWP06:~/Projects/repositories/Test$ echo $msg | grep -E $message_pattern
+grep: Invalid regular expression
+scm@LX-EMWP06:~/Projects/repositories/Test$ echo $msg | grep -P $message_pattern
+grep: missing terminating ] for character class
+scm@LX-EMWP06:~/Projects/repositories/Test$ ls
+commit_msg.py  file.txt  jira.py  logging_example.py  merge.py  merges.json  notes.txt  one  pre-push
+scm@LX-EMWP06:~/Projects/repositories/Test$ geany notes.txt &
 
 
 
