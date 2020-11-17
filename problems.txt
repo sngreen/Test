@@ -6,3 +6,4 @@ Which environments will people be using Git under;
 Merges
 	Common ancestors, reachable, determine whether it is a simple commit or if it is a merge.
 	
+Can not use GitHub Api since we are not talking about the remote, but the local commit
