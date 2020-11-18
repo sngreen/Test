@@ -7,3 +7,25 @@ Merges
 	Common ancestors, reachable, determine whether it is a simple commit or if it is a merge.
 	
 Can not use GitHub Api since we are not talking about the remote, but the local commit
+
+
+
+
+Nothing wrong with good old grep here.
+
+grep -E -o 'finalNumber="[0-9]+"' file.xml | grep -E -o '[0-9]+'
+Use -E for extended regular expressions, and -o to print only the matching part.
+
+Pure sed:
+
+sed -n 's/^.*finalNumber="\([[:digit:]]\+\)".*$/\1/p' <test
+
+This might work for you (GNU sed):
+
+sed -r 's/.*finalNumber="([^"]*)".*/\1/' file
+
+Perl does, though:
+
+perl -ne 'print $1 if /(?<=finalNumber=")(.*?)(?=")/'
+
+
