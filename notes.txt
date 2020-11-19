@@ -119,4 +119,13 @@ commit_msg.py  file.txt  jira.py  logging_example.py  merge.py  merges.json  not
 scm@LX-EMWP06:~/Projects/repositories/Test$ geany notes.txt &
 
 
+------------------------------------------------------------------------
+
+git cat-file -p $commit_id
+
+
+git show --no-patch --format="%P" <commit hash>
+
+
+
 
