@@ -1,0 +1,60 @@
+#!/bin/sh
+
+remote="$1"
+url="$2"
+
+message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}\s\w+'
+message_pattern='\[[A-Z]{4}\]\s[A-Z]{5,9}\-[0-9]{1,5}[ A-z-.,\n]+'
+branch_pattern='[0-9]{4,5}'
+
+z40=0000000000000000000000000000000000000000
+
+while read local_ref local_sha remote_ref remote_sha
+do
+	if [ "$local_sha" = $z40 ]; then
+		# Handle delete
+		:
+	else
+		if [ "$remote_sha" = $z40 ]
+		then
+			# New branch, examine all commits
+			range="$local_sha"
+		else
+			# Update to existing branch, examine new commits
+			range="$remote_sha..$local_sha"
+		fi
+
+		for commit in $(git rev-list "$range")
+		do
+			author=$(git var GIT_AUTHOR_IDENT | awk '{NF-=2} $1=$1')
+			branch=$(git rev-parse --abbrev-ref HEAD | grep -P $branch_pattern)
+			if [ $? -ne 0 ]; then 
+				exit 0
+			fi
+			msg=$(git rev-list --format=%B --max-count=1 $commit | grep -v $commit | grep -P "$message_pattern")
+			if [ $? -ne 0 ]; then
+				
+				# to avoid Windows/Linux directory separators
+				p=$(pwd)
+				cd $(git rev-parse --git-dir)
+				python3 commit_msg.py --branch ${branch} --commit ${commit} --message "${msg}"
+				cd ${p}
+				
+				exit 1
+			fi
+			
+			# this looks almost redundant, but .. 
+			p=$(pwd)
+			cd $(git rev-parse --git-dir)
+			issue=$( echo "$message" | cut -d' ' -f2)
+			python3 jira.py --option comment --issue $(echo "$message" | cut -d' ' -f2) --text "${msg}"
+			cd ${p}
+			
+			echo
+			echo "${msg}"
+			echo 
+		done
+	fi
+done
+
+exit 0
