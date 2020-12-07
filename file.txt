@@ -1,2 +1,1 @@
-udpated branch 18500
-updated file once again
+echoed branch name (without the name) into the file
