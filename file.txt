@@ -1,1 +1,4 @@
+echoed branch name (without the name) into the file
+
 whatever
+
