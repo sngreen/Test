@@ -1,4 +1,7 @@
+echoed branch name (without the name) into the file
+whatever
 udpated branch 18500
 updated file once again
 updated file on branch 18503
+nothing
 
