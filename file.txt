@@ -2,6 +2,4 @@ go
 go
 go
 stay
-stay again
-This part will stay
-This part will go
+This is just a test
