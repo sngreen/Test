@@ -1,4 +1,3 @@
 
 one change
-stay
 go
