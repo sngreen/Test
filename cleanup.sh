@@ -9,4 +9,6 @@ do
     git commit --allow-empty -am -
     git push
 done
+
+git checkout master
     
