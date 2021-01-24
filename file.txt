@@ -1,2 +1,1 @@
-
-18501_some_stay stay
+18501_some_stay go
