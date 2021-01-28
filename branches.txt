@@ -8,3 +8,7 @@ releases/R5.0F
 releases/R5.0G
 releases/R5.0H
 releases/R5.0K
+releases/R5.1
+releases/R5.1A
+releases/R5.1B
+releases/R5.1C
