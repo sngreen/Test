@@ -1,7 +1,5 @@
 fix_4/R5.0B
 fix_3/R5.0C
 fix_3/R5.0C
+fix_7/R5.0C
 fix_6/R5.0D
-fix_2/R5.0D
-fix_1/R5.0E
-fix_5/R5.0E
