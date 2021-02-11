@@ -12,6 +12,8 @@ do
     git checkout -b $b
     git commit --allow-empty -am -
     git log --oneline -1
+    touch file_2.txt
+    touch $(echo $b | sed -e 'sa/a_a')
     git push --set-upstream origin $b
     git checkout master
 done
