@@ -32,3 +32,9 @@ echo fix_K/R5.0K > file.txt
 git commit -am 'fix_K/R5.0K, first commit'
 git push --set-upstream origin fix_K/R5.0K
 echo create pull request from ix_K/R5.0K to releases/R5.0K
+
+#
+#
+#
+
+# git checkout releases/R5.0H && git pull && git checkout -b fix_H/R5.0H && echo fix_H/R5.0H >> file.txt && git commit -am 'fix_H/R5.0H, message' && git push --set-upstream origin fix_H/R5.0H
