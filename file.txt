@@ -1,1 +1,2 @@
 fix_3/R5.0D
+fix_G/R5.0G
